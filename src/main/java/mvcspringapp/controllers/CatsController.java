@@ -5,7 +5,10 @@ import mvcspringapp.models.Cat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/cats")
@@ -35,7 +38,11 @@ public class CatsController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute("cat") Cat cat) {
+    public String create(@ModelAttribute("cat") @Valid Cat cat,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "cats/new";
+
         catDao.save(cat);
         return "redirect:/cats";
     }
@@ -47,7 +54,12 @@ public class CatsController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("cat") Cat cat, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("cat") @Valid Cat cat,
+                         BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return "cats/edit";
+
         catDao.update(id, cat);
         return "redirect:/cats";
     }

@@ -13,10 +13,10 @@ public class CatDAO {
 
     {
         cats = new ArrayList<>();
-        cats.add(new Cat(++CATS_COUNT, "Tom"));
-        cats.add(new Cat(++CATS_COUNT, "Murka"));
-        cats.add(new Cat(++CATS_COUNT, "Fluffy"));
-        cats.add(new Cat(++CATS_COUNT, "JerryTheCat"));
+        cats.add(new Cat(++CATS_COUNT, "Tom", 1, "tom@mail.com"));
+        cats.add(new Cat(++CATS_COUNT, "Murka", 2, "murka@mail.com"));
+        cats.add(new Cat(++CATS_COUNT, "Fluffy", 1, "fluffy@mail.com"));
+        cats.add(new Cat(++CATS_COUNT, "JerryTheCat", 3, "jtc@mail.com"));
     }
 
     public List<Cat> index() {
@@ -33,6 +33,8 @@ public class CatDAO {
     public void update(int id, Cat updatedCat) {
         Cat catToBeUpdated = show(id);
         catToBeUpdated.setName(updatedCat.getName());
+        catToBeUpdated.setAge(updatedCat.getAge());
+        catToBeUpdated.setOwnersEmail(updatedCat.getOwnersEmail());
     }
 
     public void delete(int id) {

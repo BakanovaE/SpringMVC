@@ -9,6 +9,18 @@
 <form th:method="PATCH" th:action="@{/cats/{id}(id=${cat.getId()})}" th:object="${cat}">
     <label for="name" >Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+
+    <br/>
+    <label for="age" >Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+
+    <br/>
+    <label for="ownersEmail" >Enter owners email: </label>
+    <input type="text" th:field="*{ownersEmail}" id="ownersEmail"/>
+    <div style="color:red" th:if="${#fields.hasErrors('ownersEmail')}" th:errors="*{ownersEmail}">Owners email error</div>
+
     <br/>
     <input type="submit" value="Update!"/>
 </form>

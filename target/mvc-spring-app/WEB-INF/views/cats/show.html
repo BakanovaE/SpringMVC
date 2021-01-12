@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<p th:text="${cat.getName()}">VALUE</p>
+<p th:text="${cat.getName() + ', ' + cat.getAge()}">VALUE</p>
+<p th:text="${cat.getOwnersEmail()}">VALUE</p>
 <p th:text="${cat.getId()}">VALUE</p>
 
 <a th:href="@{/cats/{id}/edit(id=${cat.getId()})}">Edit</a>
